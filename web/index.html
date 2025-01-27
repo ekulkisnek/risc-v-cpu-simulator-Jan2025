@@ -15,6 +15,13 @@
 
         <div class="control-panel">
             <h2>Control Panel</h2>
+            <p class="section-description">Real-time control interface for the CPU simulation. These controls allow direct manipulation of the processor's execution state and visualization updates.</p>
+            <div class="control-description">
+                <p><strong>Start:</strong> Initiates continuous cycle-by-cycle execution with 1-second intervals between cycles</p>
+                <p><strong>Stop:</strong> Pauses the simulation, freezing all pipeline stages and performance metrics</p>
+                <p><strong>Step:</strong> Executes a single clock cycle, showing detailed state changes across all pipeline stages</p>
+                <p><strong>Reset:</strong> Clears all pipeline stages, resets performance counters, and returns CPU to initial state</p>
+            </div>
             <div class="controls">
                 <button id="start">Start</button>
                 <button id="stop">Stop</button>
@@ -25,42 +32,58 @@
 
         <div class="pipeline-visualization">
             <h2>Pipeline Stages</h2>
+            <p class="section-description">Live visualization of the RISC-V 5-stage pipeline, showing instruction flow and current operation in each stage. Data is updated every cycle based on simulated execution.</p>
             <div class="pipeline-stages">
                 <div class="stage" id="fetch">
-                    <h3>Fetch</h3>
+                    <h3>Fetch Stage</h3>
+                    <p class="stage-description">Retrieves instructions from simulated memory at the current Program Counter (PC) location. Shows current instruction address and cache interaction status.</p>
                     <div class="stage-content"></div>
+                    <p class="stage-metrics">Updates: PC value, instruction cache hits/misses, branch prediction status</p>
                 </div>
                 <div class="stage" id="decode">
-                    <h3>Decode</h3>
+                    <h3>Decode Stage</h3>
+                    <p class="stage-description">Breaks down fetched instruction into components: opcode, registers, immediate values. Generates control signals for later stages.</p>
                     <div class="stage-content"></div>
+                    <p class="stage-metrics">Shows: Instruction type, register numbers, immediate values, control signals</p>
                 </div>
                 <div class="stage" id="execute">
-                    <h3>Execute</h3>
+                    <h3>Execute Stage</h3>
+                    <p class="stage-description">Performs ALU operations, calculates memory addresses, and resolves branches. Implements forwarding paths to handle data hazards.</p>
                     <div class="stage-content"></div>
+                    <p class="stage-metrics">Displays: Operation type, operand values, forwarding status, execution results</p>
                 </div>
                 <div class="stage" id="memory">
-                    <h3>Memory</h3>
+                    <h3>Memory Stage</h3>
+                    <p class="stage-description">Handles load/store operations with the data cache. Manages memory access timing and cache coherency.</p>
                     <div class="stage-content"></div>
+                    <p class="stage-metrics">Tracks: Memory operations, addresses accessed, cache performance</p>
                 </div>
                 <div class="stage" id="writeback">
-                    <h3>Writeback</h3>
+                    <h3>Writeback Stage</h3>
+                    <p class="stage-description">Updates register file with computation results. Manages result forwarding to earlier pipeline stages.</p>
                     <div class="stage-content"></div>
+                    <p class="stage-metrics">Records: Register updates, forwarding paths activated, completion status</p>
                 </div>
             </div>
         </div>
 
         <div class="log-panel">
             <h2>Execution Log</h2>
+            <p class="section-description">Detailed cycle-by-cycle execution trace showing pipeline events, hazards detected, and performance impacts. Automatically scrolls to show latest events.</p>
+            <p class="log-description">Color-coded entries indicate different event types: instruction execution (blue), hazards (red), cache events (yellow), branch outcomes (green)</p>
             <div id="log-display"></div>
         </div>
 
         <div class="registers">
             <h3>Registers</h3>
+            <p class="section-description">Real-time view of RISC-V register file (x0-x31). Updates each cycle to show current values. Register x0 is hardwired to zero per RISC-V specification.</p>
+            <p class="register-description">Values shown in hexadecimal. Highlighted registers indicate recent writes. Hover for decimal conversion.</p>
             <div id="register-display"></div>
         </div>
 
         <div class="performance-metrics">
             <h2>Performance Metrics</h2>
+            <p class="section-description">Real-time performance monitoring graphs and statistics. Data collected and updated each cycle from simulated execution.</p>
             <div class="metrics-container">
                 <canvas id="ipcChart"></canvas>
                 <canvas id="cacheChart"></canvas>
