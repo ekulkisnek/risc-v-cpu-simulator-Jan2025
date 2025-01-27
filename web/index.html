@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,11 +22,6 @@
                 <button id="step">Step</button>
                 <button id="reset">Reset</button>
             </div>
-        </div>
-
-        <div class="log-panel">
-            <h2>Execution Log</h2>
-            <div id="log-display"></div>
         </div>
 
         <div class="pipeline-visualization">
@@ -54,6 +50,16 @@
             </div>
         </div>
 
+        <div class="log-panel">
+            <h2>Execution Log</h2>
+            <div id="log-display"></div>
+        </div>
+
+        <div class="registers">
+            <h3>Registers</h3>
+            <div id="register-display"></div>
+        </div>
+
         <div class="performance-metrics">
             <h2>Performance Metrics</h2>
             <div class="metrics-container">
@@ -63,17 +69,93 @@
             </div>
         </div>
 
-        <div class="control-panel">
-            <h2>Control Panel</h2>
-            <div class="controls">
-                <button id="start">Start</button>
-                <button id="stop">Stop</button>
-                <button id="step">Step</button>
-                <button id="reset">Reset</button>
-            </div>
-            <div class="registers">
-                <h3>Registers</h3>
-                <div id="register-display"></div>
+        <div class="documentation">
+            <h2>Technical Documentation</h2>
+            <div class="doc-content">
+                <h3>1. Architecture Overview</h3>
+                <p>This RISC-V CPU Simulator implements a complete 5-stage pipelined processor architecture following the RISC-V ISA specification. The simulator provides real-time visualization of the processor's internal operations, performance metrics, and detailed logging of pipeline stages.</p>
+
+                <h3>2. Pipeline Implementation</h3>
+                <p>The processor implements the classic 5-stage RISC-V pipeline:</p>
+                <ul>
+                    <li><strong>Fetch Stage:</strong> Retrieves instructions from instruction memory, updates PC, performs branch prediction</li>
+                    <li><strong>Decode Stage:</strong> Decodes RISC-V instructions, reads register file, generates control signals</li>
+                    <li><strong>Execute Stage:</strong> Performs ALU operations, branch calculations, and address computations</li>
+                    <li><strong>Memory Stage:</strong> Handles load/store operations with data cache interaction</li>
+                    <li><strong>Writeback Stage:</strong> Updates register file with computation results</li>
+                </ul>
+
+                <h3>3. Performance Monitoring</h3>
+                <p>The simulator tracks multiple performance metrics:</p>
+                <ul>
+                    <li>Instructions Per Cycle (IPC)</li>
+                    <li>Cache hit/miss rates</li>
+                    <li>Branch prediction accuracy</li>
+                    <li>Pipeline hazard statistics</li>
+                    <li>Cycle-accurate timing information</li>
+                </ul>
+
+                <h3>4. Hazard Handling</h3>
+                <p>The processor implements sophisticated hazard detection and resolution:</p>
+                <ul>
+                    <li>Data Hazards: Forward paths from EX/MEM and MEM/WB stages</li>
+                    <li>Control Hazards: Branch prediction with BTB</li>
+                    <li>Structural Hazards: Resource conflict resolution</li>
+                </ul>
+
+                <h3>5. Memory Hierarchy</h3>
+                <p>The memory system features:</p>
+                <ul>
+                    <li>L1 Instruction Cache: Direct-mapped, 32KB</li>
+                    <li>L1 Data Cache: 4-way set associative, 32KB</li>
+                    <li>Cache coherence protocol</li>
+                    <li>Memory access latency simulation</li>
+                </ul>
+
+                <h3>6. Register File</h3>
+                <p>Complete RISC-V register file implementation:</p>
+                <ul>
+                    <li>32 general-purpose registers (x0-x31)</li>
+                    <li>Real-time register value updates</li>
+                    <li>Special register handling (x0 hardwired to 0)</li>
+                </ul>
+
+                <h3>7. Visualization Components</h3>
+                <p>The UI provides comprehensive visualization through:</p>
+                <ul>
+                    <li>Pipeline stage visualization with instruction flow</li>
+                    <li>Performance metrics charts using Chart.js</li>
+                    <li>Detailed execution logging system</li>
+                    <li>Register state display</li>
+                </ul>
+
+                <h3>8. Control Interface</h3>
+                <p>User control features include:</p>
+                <ul>
+                    <li>Start/Stop simulation control</li>
+                    <li>Single-step execution</li>
+                    <li>Reset functionality</li>
+                    <li>Real-time performance monitoring</li>
+                </ul>
+
+                <h3>9. Implementation Details</h3>
+                <p>The simulator is built using:</p>
+                <ul>
+                    <li>Frontend: HTML5, CSS3, JavaScript</li>
+                    <li>Visualization: Chart.js for performance graphs</li>
+                    <li>Backend: Python HTTP server</li>
+                    <li>RISC-V ISA implementation in JavaScript</li>
+                </ul>
+
+                <h3>10. Performance Analysis</h3>
+                <p>The system provides detailed performance analysis including:</p>
+                <ul>
+                    <li>Cycle-accurate simulation</li>
+                    <li>Pipeline efficiency metrics</li>
+                    <li>Stall and bubble analysis</li>
+                    <li>Cache performance statistics</li>
+                    <li>Branch prediction effectiveness</li>
+                </ul>
             </div>
         </div>
     </div>
