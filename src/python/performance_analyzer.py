@@ -14,6 +14,9 @@ class PerformanceMetrics:
     cache_misses: int
     branch_predictions: int
     branch_mispredictions: int
+    power_consumption: float  # Watts
+    thermal_density: float    # W/mm²
+    chiplet_utilization: float  # Percentage
 
 class CPUPerformanceAnalyzer:
     def __init__(self):

@@ -42,6 +42,22 @@ module matrix_mul (
                     if (i < 4) begin
                         if (j < 4) begin
                             if (k < 4) begin
+
+    // AI workload optimization features
+    reg [7:0] activation_cache [15:0];
+    reg [3:0] tensorcore_busy;
+    
+    // Tensor operation support
+    always @(posedge clk) begin
+        if (tensorcore_busy) begin
+            // Simulate tensor operations
+            activation_cache[i*4 + j] <= 
+                matrix_a[i*4 + k] * matrix_b[k*4 + j] +
+                (k == 0 ? 0 : activation_cache[i*4 + j]);
+            tensorcore_busy <= (k < 3);
+        end
+    end
+
                                 temp_result <= temp_result + 
                                     matrix_a[i*4 + k] * matrix_b[k*4 + j];
                                 k <= k + 1;
