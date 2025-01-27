@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RISC-V CPU Simulator</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>RISC-V CPU Simulator</h1>
+        </header>
+
+        <div class="pipeline-visualization">
+            <h2>Pipeline Stages</h2>
+            <div class="pipeline-stages">
+                <div class="stage" id="fetch">
+                    <h3>Fetch</h3>
+                    <div class="stage-content"></div>
+                </div>
+                <div class="stage" id="decode">
+                    <h3>Decode</h3>
+                    <div class="stage-content"></div>
+                </div>
+                <div class="stage" id="execute">
+                    <h3>Execute</h3>
+                    <div class="stage-content"></div>
+                </div>
+                <div class="stage" id="memory">
+                    <h3>Memory</h3>
+                    <div class="stage-content"></div>
+                </div>
+                <div class="stage" id="writeback">
+                    <h3>Writeback</h3>
+                    <div class="stage-content"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="performance-metrics">
+            <h2>Performance Metrics</h2>
+            <div class="metrics-container">
+                <canvas id="ipcChart"></canvas>
+                <canvas id="cacheChart"></canvas>
+                <canvas id="branchChart"></canvas>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <h2>Control Panel</h2>
+            <div class="controls">
+                <button id="start">Start</button>
+                <button id="stop">Stop</button>
+                <button id="step">Step</button>
+                <button id="reset">Reset</button>
+            </div>
+            <div class="registers">
+                <h3>Registers</h3>
+                <div id="register-display"></div>
+            </div>
+        </div>
+    </div>
+    <script src="js/visualization.js"></script>
+</body>
+</html>
