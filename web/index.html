@@ -72,26 +72,86 @@
             <h2>Technical Documentation</h2>
             <div class="doc-content">
                 <h3>1. Architecture Overview</h3>
-                <p>This RISC-V CPU Simulator implements a complete 5-stage pipelined processor architecture following the RISC-V ISA specification. The simulator provides real-time visualization of the processor's internal operations, performance metrics, and detailed logging of pipeline stages.</p>
+                <p>The RISC-V CPU Simulator implements a sophisticated 5-stage pipelined processor architecture adhering to the RISC-V ISA specification. The processor uses a Harvard architecture with separate instruction and data paths, supporting parallel instruction fetch and data operations.</p>
+                <p>Key components:</p>
+                <ul>
+                    <li>Instruction fetch logic with dynamic PC updates</li>
+                    <li>32 x 32-bit general-purpose register file</li>
+                    <li>Complete pipeline stage registers (IF/ID, ID/EX, EX/MEM, MEM/WB)</li>
+                    <li>Advanced control signal generation</li>
+                    <li>Integrated ALU interface</li>
+                </ul>
 
                 <h3>2. Pipeline Implementation</h3>
-                <p>The processor implements the classic 5-stage RISC-V pipeline:</p>
+                <p>Our processor implements an advanced 5-stage RISC-V pipeline with sophisticated hazard handling and performance optimization:</p>
+                
+                <h4>Fetch Stage</h4>
                 <ul>
-                    <li><strong>Fetch Stage:</strong> Retrieves instructions from instruction memory, updates PC, performs branch prediction</li>
-                    <li><strong>Decode Stage:</strong> Decodes RISC-V instructions, reads register file, generates control signals</li>
-                    <li><strong>Execute Stage:</strong> Performs ALU operations, branch calculations, and address computations</li>
-                    <li><strong>Memory Stage:</strong> Handles load/store operations with data cache interaction</li>
-                    <li><strong>Writeback Stage:</strong> Updates register file with computation results</li>
+                    <li>Dynamic PC management and instruction retrieval</li>
+                    <li>Integrated branch prediction system</li>
+                    <li>Instruction buffer management for optimal throughput</li>
+                    <li>Speculative execution support</li>
+                </ul>
+
+                <h4>Decode Stage</h4>
+                <ul>
+                    <li>Full RISC-V instruction set decoding</li>
+                    <li>Register file access optimization</li>
+                    <li>Immediate value generation and handling</li>
+                    <li>Comprehensive control signal generation</li>
+                </ul>
+
+                <h4>Execute Stage</h4>
+                <ul>
+                    <li>Advanced ALU operations</li>
+                    <li>Precise branch address calculation</li>
+                    <li>Efficient forwarding path integration</li>
+                    <li>Out-of-order execution preparation</li>
+                </ul>
+
+                <h4>Memory Stage</h4>
+                <ul>
+                    <li>Optimized load/store execution</li>
+                    <li>Advanced data cache interface</li>
+                    <li>Memory access control and optimization</li>
+                    <li>Cache coherency maintenance</li>
+                </ul>
+
+                <h4>Writeback Stage</h4>
+                <ul>
+                    <li>High-performance register file updates</li>
+                    <li>Result selection logic optimization</li>
+                    <li>Write-back conflict resolution</li>
+                    <li>Pipeline completion handling</li>
                 </ul>
 
                 <h3>3. Performance Monitoring</h3>
-                <p>The simulator tracks multiple performance metrics:</p>
+                <p>Our comprehensive performance monitoring system provides real-time analysis of CPU operations:</p>
+                
+                <h4>Core Metrics</h4>
                 <ul>
-                    <li>Instructions Per Cycle (IPC)</li>
-                    <li>Cache hit/miss rates</li>
-                    <li>Branch prediction accuracy</li>
-                    <li>Pipeline hazard statistics</li>
-                    <li>Cycle-accurate timing information</li>
+                    <li>Instructions Per Cycle (IPC) with dynamic tracking</li>
+                    <li>Cache performance analysis (hit/miss rates, latency)</li>
+                    <li>Branch prediction accuracy and statistics</li>
+                    <li>Pipeline hazard detection and resolution metrics</li>
+                    <li>Cycle-accurate execution timeline</li>
+                </ul>
+
+                <h4>Advanced Analytics</h4>
+                <ul>
+                    <li>Pipeline efficiency calculations</li>
+                    <li>Resource utilization tracking</li>
+                    <li>Stall and bubble analysis</li>
+                    <li>Memory hierarchy performance</li>
+                    <li>Execution pattern recognition</li>
+                </ul>
+
+                <h4>Real-time Visualization</h4>
+                <ul>
+                    <li>Dynamic performance graphs</li>
+                    <li>Pipeline state visualization</li>
+                    <li>Resource usage heat maps</li>
+                    <li>Hazard occurrence tracking</li>
                 </ul>
 
                 <h3>4. Hazard Handling</h3>
