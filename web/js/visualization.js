@@ -177,8 +177,19 @@ class CPUVisualizer {
         this.updateRegisters(null);
     }
 
+    log(message, type = 'info') {
+        const logDisplay = document.getElementById('log-display');
+        const entry = document.createElement('div');
+        entry.className = `log-entry log-${type}`;
+        const timestamp = new Date().toISOString().split('T')[1].split('.')[0];
+        entry.textContent = `[${timestamp}] ${message}`;
+        logDisplay.appendChild(entry);
+        logDisplay.scrollTop = logDisplay.scrollHeight;
+    }
+
     simulateCycle() {
         this.cycle++;
+        this.log(`\n=== Starting Cycle ${this.cycle} ===`);
         
         // Simulate pipeline stages
         const stageData = {
@@ -189,15 +200,29 @@ class CPUVisualizer {
             writeback: `Writeback ${this.cycle - 4}`
         };
         
+        // Log detailed pipeline information
+        this.log(`Fetch Stage: Fetching new instruction at PC+${this.cycle*4}`);
+        if (this.cycle > 1) this.log(`Decode Stage: Analyzing instruction operands and control signals`);
+        if (this.cycle > 2) this.log(`Execute Stage: Performing ALU operation or branch calculation`);
+        if (this.cycle > 3) this.log(`Memory Stage: Accessing data cache or forwarding results`);
+        if (this.cycle > 4) this.log(`Writeback Stage: Updating register file with computed results`);
+        
         this.updatePipelineDisplay(stageData);
         this.updatePerformanceMetrics();
         
-        // Simulate register updates
+        // Simulate and log register updates
         const registerData = Array.from(
             {length: 32}, 
             () => Math.floor(Math.random() * 0xFFFFFFFF)
         );
         this.updateRegisters(registerData);
+        
+        // Log performance metrics
+        const currentIPC = this.performanceData.ipc[this.performanceData.ipc.length - 1];
+        this.log(`Performance Metrics:`);
+        this.log(`  - Current IPC: ${currentIPC.toFixed(2)}`);
+        this.log(`  - Cache Hits/Misses: ${this.performanceData.cacheHits}/${this.performanceData.cacheMisses}`);
+        this.log(`  - Branch Predictions: ${this.performanceData.branchPredictions.correct} correct, ${this.performanceData.branchPredictions.incorrect} incorrect`);
     }
 
     run() {
